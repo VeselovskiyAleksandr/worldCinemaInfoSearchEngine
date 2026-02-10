@@ -1,5 +1,4 @@
-#worldCinemaInfoSearchEngine
-
+#worldCinemaInfoSearchEngine                                                                                                                                                                                           
 worldCinemaInfoSearchEngine - поисковый движок, который отыскивает документы по ключевым словам, вводимым пользователем.
 
 Для сборки проекта необходима версия cMake 3.8 и выше.
