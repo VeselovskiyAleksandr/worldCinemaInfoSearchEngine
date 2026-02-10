@@ -18,8 +18,7 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
 
 ##Установка                                                                                                                                                                                                            
  Клонируйте репозиторий:
-   bash
-   git clone https://github.com/VeselovskiyAleksandr/worldCinemaInfoSearchEngine.git
+   bash git clone https://github.com/VeselovskiyAleksandr/worldCinemaInfoSearchEngine.git
    cd worldCinemaInfoSearchEngine                                                                                                                                                                                      
    Создайте директорию для сборки:
    bash
