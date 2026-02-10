@@ -33,7 +33,9 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
    cmake --build .                                                                                                                                                                                                     
    Запустите исполняемый файл:
    bash
-   ./worldCinemaInfoSearchEngine                                                                                                                                                                                       #Вклад
+   ./worldCinemaInfoSearchEngine                                                                                                                                                                                  
+                                                                                                                                                                                                                  
+#Вклад
 Если вы хотите внести свой вклад, пожалуйста, создайте копию репозитория и отправьте пулл-реквест.                                                                                                                     
                                                                                                                   
 Расположение файлов в проекте:                                                                                                                                                                                         
