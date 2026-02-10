@@ -26,11 +26,17 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
    cmake ..
    Соберите проект:
    bash
-   cmake --build .
-   <img width="1600" height="900" alt="требуемое расположение файлов" src="https://github.com/user-attachments/assets/6ebfd29b-c64b-41c5-b48c-52fbe80d2a79" />
-
+   cmake --build . 
    Запустите исполняемый файл:
    bash
    ./worldCinemaInfo
 #Вклад
 Если вы хотите внести свой вклад, пожалуйста, создайте копию репозитория и отправьте пулл-реквест.
+
+  <img width="1600" height="900" alt="требуемое расположение файлов" src="https://github.com/user-attachments/assets/6ebfd29b-c64b-41c5-b48c-52fbe80d2a79" />
+
+
+
+
+
+
