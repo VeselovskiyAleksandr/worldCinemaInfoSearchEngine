@@ -19,8 +19,8 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
 ##Установка
  Клонируйте репозиторий:
    bash
-   git clone https://github.com/VeselovskiyAleksandr/worldCinemaInfo.git
-   cd worldCinemaInfo
+   git clone https://github.com/VeselovskiyAleksandr/worldCinemaInfoSearchEngine.git
+   cd worldCinemaInfoSearchEngine
    Создайте директорию для сборки:
    bash
    mkdir build
@@ -33,7 +33,7 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
    cmake --build . 
    Запустите исполняемый файл:
    bash
-   ./worldCinemaInfo
+   ./worldCinemaInfoSearchEngine
 #Вклад
 Если вы хотите внести свой вклад, пожалуйста, создайте копию репозитория и отправьте пулл-реквест.
 Расположение файлов в проекте:
