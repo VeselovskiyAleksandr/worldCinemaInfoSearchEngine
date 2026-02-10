@@ -38,7 +38,8 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
 Если вы хотите внести свой вклад, пожалуйста, создайте копию репозитория и отправьте пулл-реквест.                                                                                                                     
                                                                                                                   
 Расположение файлов в проекте:                                                                                                                                                                                         
-<img width="1600" height="900" alt="расположение файлов" src="https://github.com/user-attachments/assets/0eacd714-dd6e-4dca-a455-5cf50b215d0c" />                                                                         
+<img width="1600" height="900" alt="расположение файлов" src="https://github.com/user-attachments/assets/0eacd714-dd6e-4dca-a455-5cf50b215d0c" />                                                                      
+                                                                                                                                                                                                                                     
 Выделенные файлы необходимо скопировать вуказанное место:                                                                                                                                                              
   <img width="1600" height="900" alt="требуемое расположение файлов" src="https://github.com/user-attachments/assets/6ebfd29b-c64b-41c5-b48c-52fbe80d2a79" />
 
