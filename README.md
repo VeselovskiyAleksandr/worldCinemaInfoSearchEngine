@@ -27,6 +27,8 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
    Соберите проект:
    bash
    cmake --build .
+   <img width="1600" height="900" alt="требуемое расположение файлов" src="https://github.com/user-attachments/assets/6ebfd29b-c64b-41c5-b48c-52fbe80d2a79" />
+
    Запустите исполняемый файл:
    bash
    ./worldCinemaInfo
