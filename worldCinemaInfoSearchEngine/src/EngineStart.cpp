@@ -1,12 +1,15 @@
 #include "EngineStart.h"
 
-bool EngineStart::isJSONValid(const string& filepath) {
-	try {
+bool EngineStart::isJSONValid(const string& filepath) 
+{
+	try
+	{
 		ifstream file(filepath);
 		nlohmann::json data = nlohmann::json::parse(file);
 		return true;
 	}
-	catch (const nlohmann::json::parse_error& err) {
+	catch (const nlohmann::json::parse_error& err)
+	{
 		cerr << "JSON Error: " << err.what();
 		return false;
 	}
