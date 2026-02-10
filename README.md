@@ -16,7 +16,7 @@ worldCinemaInfoSearchEngine - поисковый движок, который о
 ВНИМАНИЕ!!! Перед запуском необходимо скопировать файлы resources, config.json, answers.json, requests.json из проекта
 (представлены на первом снимке) в папку out/build/x64-Debug/worldCinemaInfoSearchEngine (показано на втором снимке).
 
-##Установка
+##Установка                                                                                                                                                                                                            
  Клонируйте репозиторий:
    bash
    git clone https://github.com/VeselovskiyAleksandr/worldCinemaInfoSearchEngine.git
