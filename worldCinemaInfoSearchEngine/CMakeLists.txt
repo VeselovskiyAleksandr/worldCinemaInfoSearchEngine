@@ -8,3 +8,11 @@ add_executable (worldCinemaInfoSearchEngine "src/worldCinemaInfoSearchEngine.cpp
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
 target_link_libraries(worldCinemaInfoSearchEngine PRIVATE nlohmann_json::nlohmann_json)
 target_include_directories(worldCinemaInfoSearchEngine PUBLIC include)
+
+file(COPY 
+    ${PROJECT_SOURCE_DIR}/worldCinemaInfoSearchEngine/config.json
+    ${PROJECT_SOURCE_DIR}/worldCinemaInfoSearchEngine/answers.json
+    ${PROJECT_SOURCE_DIR}/worldCinemaInfoSearchEngine/requests.json
+    ${PROJECT_SOURCE_DIR}/worldCinemaInfoSearchEngine/resources
+    DESTINATION ${PROJECT_BINARY_DIR}/worldCinemaInfoSearchEngine
+)
