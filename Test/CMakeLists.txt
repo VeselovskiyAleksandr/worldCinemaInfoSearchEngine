@@ -17,8 +17,8 @@ add_executable (Test
                     "../worldCinemaInfoSearchEngine/src/EngineStart.cpp"
                     "../worldCinemaInfoSearchEngine/src/RequestsJSON.cpp"
                     "../worldCinemaInfoSearchEngine/src/AnswersJSON.cpp"
-                     "../worldCinemaInfoSearchEngine/src/ConverterJSON.cpp"
-                      "../worldCinemaInfoSearchEngine/src/SearchServer.cpp"
+                    "../worldCinemaInfoSearchEngine/src/ConverterJSON.cpp"
+                    "../worldCinemaInfoSearchEngine/src/SearchServer.cpp"
                  )
 target_include_directories(Test PRIVATE "../worldCinemaInfoSearchEngine/include/")
 target_link_libraries(Test PRIVATE gtest_main nlohmann_json::nlohmann_json)
