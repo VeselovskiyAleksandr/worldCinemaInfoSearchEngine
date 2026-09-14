@@ -1,6 +1,6 @@
 #include "InvertedIndex.h"
 
-void InvertedIndex::vectorTraversalFunction(vector<string>& sentence, vector<string>& setWords, string word)
+void InvertedIndex::vectorTraversalFunction(std::vector<std::string>& sentence, std::vector<std::string>& setWords, std::string word)
 {
 	for (int ir = 0; ir < sentence.size(); ++ir)
 	{
@@ -13,7 +13,7 @@ void InvertedIndex::vectorTraversalFunction(vector<string>& sentence, vector<str
 }
 
 template<typename Iterator>
-void InvertedIndex::wordEntryConditionFunction(string& word, vector<string>& sentence, vector<string>& setWords, Iterator& ir, Iterator& n)
+void InvertedIndex::wordEntryConditionFunction(std::string& word, std::vector<std::string>& sentence, std::vector<std::string>& setWords, Iterator& ir, Iterator& n)
 {
 	if (sentence[ir][n] != '?' && sentence[ir][n] != '!' && sentence[ir][n] != '"' && sentence[ir][n] != '-' && sentence[ir][n] != '\'' && sentence[ir][n] != '/' &&
 		sentence[ir][n] != ')' && sentence[ir][n] != '(' && sentence[ir][n] != ' ' && sentence[ir][n] != ';' && sentence[ir][n] != ':' && sentence[ir][n] != ',' &&
@@ -39,17 +39,17 @@ void InvertedIndex::wordEntryConditionFunction(string& word, vector<string>& sen
 	}
 }
 
-void InvertedIndex::wordSplitFunction(vector<string>& sentence, vector<string>& setWords)
+void InvertedIndex::wordSplitFunction(std::vector<std::string>& sentence, std::vector<std::string>& setWords)
 {
-	string highlightedWord = "";
+	std::string highlightedWord = "";
 	vectorTraversalFunction(sentence, setWords, highlightedWord);
 }
 
 
-void InvertedIndex::vectorEntryFillFunction(vector<string> vectWord[DOCUMENT_NUMBER], int filmId, vector<Entry> getCountWords[DOCUMENT_NUMBER])
+void InvertedIndex::vectorEntryFillFunction(std::vector<std::string> vectWord[DOCUMENT_NUMBER], int filmId, std::vector<Entry> getCountWords[DOCUMENT_NUMBER])
 {
 	size_t wordRepetitionCount = 0;
-	vector<string> checkRepetition;
+	std::vector<std::string> checkRepetition;
 	for (int itr = 0; itr < vectWord[filmId].size(); ++itr)
 	{
 		for (int iter = itr + 1; iter < vectWord[filmId].size(); ++iter)
@@ -76,7 +76,7 @@ void InvertedIndex::vectorEntryFillFunction(vector<string> vectWord[DOCUMENT_NUM
 	checkRepetition.clear();
 }
 
-void InvertedIndex::relevanceIncreasingFunction(vector <size_t> dIDVector, multimap < string, multimap <size_t, size_t >>& dataWord, int& i, size_t& requestAbsoluteRelevance)
+void InvertedIndex::relevanceIncreasingFunction(std::vector <size_t> dIDVector, std::multimap < std::string, std::multimap <size_t, size_t >>& dataWord, int& i, size_t& requestAbsoluteRelevance)
 {
 	for (auto& it = dataWord.begin(); it != dataWord.end(); ++it)
 	{
@@ -88,21 +88,21 @@ void InvertedIndex::relevanceIncreasingFunction(vector <size_t> dIDVector, multi
 	}
 }
 
-void InvertedIndex::maxRelevanceFindingFunction(vector <size_t> dIDVector, multimap < string, multimap <size_t, size_t >>& dataWord, size_t& requestAbsoluteRelevance,
-	                                            size_t& maxRequestAbsoluteRelevance, multimap <size_t, size_t >& searchRequestResult)
+void InvertedIndex::maxRelevanceFindingFunction(std::vector <size_t> dIDVector, std::multimap < std::string, std::multimap <size_t, size_t >>& dataWord, size_t& requestAbsoluteRelevance,
+	                                            size_t& maxRequestAbsoluteRelevance, std::multimap <size_t, size_t >& searchRequestResult)
 {
 	for (int i = 0; i < dIDVector.size(); ++i)
 	{
 		relevanceIncreasingFunction(dIDVector, dataWord, i, requestAbsoluteRelevance);
 		if (requestAbsoluteRelevance > maxRequestAbsoluteRelevance)
 			maxRequestAbsoluteRelevance = requestAbsoluteRelevance;
-		searchRequestResult.insert({ requestAbsoluteRelevance, dIDVector[i] });
-		requestAbsoluteRelevance = 0;
+	        searchRequestResult.insert({ requestAbsoluteRelevance, dIDVector[i] });
+		    requestAbsoluteRelevance = 0;
 	}
 }
 
 template<typename Iterator>
-void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count, Entry& entry)
+void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, std::vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count, Entry& entry)
 {
 	entry.docId = it.docId;
 	entry.word = it.word;
@@ -112,7 +112,7 @@ void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, vector<Entr
 }
 
 template<typename Iterator>
-void InvertedIndex::matchSearchInnerLoopFunction(int& i, vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count)
+void InvertedIndex::matchSearchInnerLoopFunction(int& i, std::vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count)
 {
 	for (int j = i + 1; j != DOCUMENT_NUMBER; ++j)
 	{
@@ -131,7 +131,7 @@ void InvertedIndex::matchSearchInnerLoopFunction(int& i, vector<Entry> getCountW
 	}
 }
 
-void InvertedIndex::matchSearchOuterLoopFunction(vector<Entry> getCountWords[DOCUMENT_NUMBER], vector <Entry>& vectEntry, multimap<string, vector< Entry>>& countWordsMap)
+void InvertedIndex::matchSearchOuterLoopFunction(std::vector<Entry> getCountWords[DOCUMENT_NUMBER], std::vector <Entry>& vectEntry, std::multimap<std::string, std::vector< Entry>>& countWordsMap)
 {
 	for (int i = 0; i != DOCUMENT_NUMBER; ++i)
 	{
@@ -154,7 +154,7 @@ void InvertedIndex::matchSearchOuterLoopFunction(vector<Entry> getCountWords[DOC
 	}
 }
 
-void InvertedIndex::transferElementsFunction(vector <size_t>& docIDVector, vector <size_t>& dIDVector)
+void InvertedIndex::transferElementsFunction(std::vector <size_t>& docIDVector, std::vector <size_t>& dIDVector)
 {
 	if (docIDVector.size() > 0)
 	{

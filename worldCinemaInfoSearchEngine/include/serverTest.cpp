@@ -2,7 +2,6 @@
 #include "SearchServer.h"
 
 using json = nlohmann::json;
-using namespace std;
 
 TEST(sampleTestCase, sampleTest)
 {
@@ -22,10 +21,10 @@ TEST(ConverterJSONTest, someFunctionsTest)
 	ConverterJSON converterJSON;
 	Configuration configuration;
 	nlohmann::json config;
-	ifstream cnfile("config.json");
+	std::ifstream cnfile("config.json");
 	if (!cnfile)
 	{
-		cerr << "\n" << "The cnfile is not found." << "\n";
+		std::cerr << "\n" << "The cnfile is not found." << "\n";
 	}
 	if (cnfile.peek() != EOF)
 	{
@@ -34,13 +33,13 @@ TEST(ConverterJSONTest, someFunctionsTest)
 		for (const auto& item : config["files"].items())
 		{
 			int id = stoi(item.key());
-			pair<int, string> oPair(id, item.value());
+			std::pair<int, std::string> oPair(id, item.value());
 			configuration.movieTitles.insert(oPair);
 		}
 	}
-	string strWordTest;
-	string moviePath;
-	ifstream resfile;
+	std::string strWordTest;
+	std::string moviePath;
+	std::ifstream resfile;
 	for (const auto& it : configuration.movieTitles)
 	{
 		if (it.first == 1)
@@ -49,9 +48,9 @@ TEST(ConverterJSONTest, someFunctionsTest)
 	}
 	if (!resfile.is_open())
 	{
-		cerr << "\n" << "The file " << configuration.movieTitles[0] << " is not found." << "\n";
+		std::cerr << "\n" << "The file " << configuration.movieTitles[0] << " is not found." << "\n";
 	}
-	vector<string> wordsFromFilesVectorTest, vectorWordTest[DOCUMENT_NUMBER], wordsFromFilesTest[DOCUMENT_NUMBER];
+	std::vector<std::string> wordsFromFilesVectorTest, vectorWordTest[DOCUMENT_NUMBER], wordsFromFilesTest[DOCUMENT_NUMBER];
 	while (getline(resfile, strWordTest))
 	{
 		wordsFromFilesVectorTest.push_back(strWordTest);
@@ -77,9 +76,9 @@ TEST(ConverterJSONTest, someFunctionsTest)
 		else if (j == 78)
 			EXPECT_EQ(vectorWordTest[0][78], "kuravlyov");
 	}
-	vector<Entry> getWordCountTest[DOCUMENT_NUMBER];
-	multimap<string, vector< Entry>> countWordsMapTest;
-	vector<Entry> getCountWordsTest[DOCUMENT_NUMBER];
+	std::vector<Entry> getWordCountTest[DOCUMENT_NUMBER];
+	std::multimap<std::string, std::vector< Entry>> countWordsMapTest;
+	std::vector<Entry> getCountWordsTest[DOCUMENT_NUMBER];
 	invertedIndex.vectorEntryFillFunction(vectorWordTest, 0, getCountWordsTest);
 	for (int i = 0; i < getWordCountTest[0].size(); ++i)
 	{
@@ -93,7 +92,7 @@ TEST(ConverterJSONTest, someFunctionsTest)
 				EXPECT_EQ(j.freqWordsCount, 2);
 		}
 	}
-	for (multimap<string, vector< Entry>>::const_iterator pair = countWordsMapTest.begin(); pair != countWordsMapTest.end(); ++pair)
+	for (std::multimap<std::string, std::vector< Entry>>::const_iterator pair = countWordsMapTest.begin(); pair != countWordsMapTest.end(); ++pair)
 	{
 		if (pair->first == "zinaida")
 		{
@@ -133,7 +132,7 @@ TEST(SearchServerTest, requestsFunctionsTest)
 {
 	SearchServer searchServer;
 	RequestsJSON requestsJSON;
-	map <size_t, vector< string>>getRequestsTest;
+	std::map <size_t, std::vector< std::string>>getRequestsTest;
 	searchServer.getRequestsFunction(getRequestsTest);
 
 	for (auto i : getRequestsTest)

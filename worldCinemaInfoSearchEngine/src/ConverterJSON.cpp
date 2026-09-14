@@ -1,7 +1,7 @@
 #include "ConverterJSON.h"
 
 template<typename Iterator>
-void ConverterJSON::nullResultRecordingFunction(vector <size_t>& docIDVector_1, vector <size_t>& docIDVector_2, nlohmann::json& requestNumberConfig,
+void ConverterJSON::nullResultRecordingFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2, nlohmann::json& requestNumberConfig,
 	                                            nlohmann::json requestConfig[MAX_RESPONS], Iterator& iterator, int& countReqResponses, nlohmann::json& docConfig)
 {
 	requestConfig[countReqResponses] = { {docConfig, { "Absolute relevance", 0 }, {"Relative relevance", 0.}} };
@@ -10,7 +10,7 @@ void ConverterJSON::nullResultRecordingFunction(vector <size_t>& docIDVector_1, 
 }
 
 template<typename Iterat, typename Iter>
-void ConverterJSON::vectorTraversalFunction(vector <size_t>& docIDVector_1, vector <size_t>& docIDVector_2, bool ifDoc, nlohmann::json& requestNumberConfig,
+void ConverterJSON::vectorTraversalFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2, bool ifDoc, nlohmann::json& requestNumberConfig,
 	                                        nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, Iterat& iterator, Iter& iter)
 {
 	for (int im = 0; im != docIDVector_1.size(); ++im)
@@ -36,7 +36,7 @@ void ConverterJSON::vectorTraversalFunction(vector <size_t>& docIDVector_1, vect
 }
 
 template<typename Iterator>
-void ConverterJSON::contentLeastFrequentWordFunction(Iterator& iter, multimap < size_t, vector <size_t>>& getDataRequest, vector <size_t>& docIDVector)
+void ConverterJSON::contentLeastFrequentWordFunction(Iterator& iter, std::multimap < size_t, std::vector <size_t>>& getDataRequest, std::vector <size_t>& docIDVector)
 {
 	if (iter == getDataRequest.begin())
 	{
@@ -47,7 +47,7 @@ void ConverterJSON::contentLeastFrequentWordFunction(Iterator& iter, multimap < 
 	}
 }
 
-void ConverterJSON::findingRequestDataFunction(multimap <size_t, size_t >& searchRequestResult, double& relativeReqRelevance, size_t& maxRequestAbsoluteRelevance,
+void ConverterJSON::findingRequestDataFunction(std::multimap <size_t, size_t >& searchRequestResult, double& relativeReqRelevance, size_t& maxRequestAbsoluteRelevance,
 	                                           nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, bool& ifDoc, nlohmann::json requestNumberConfig)
 {
 	nlohmann::json docConfig;
@@ -65,7 +65,7 @@ void ConverterJSON::findingRequestDataFunction(multimap <size_t, size_t >& searc
 }
 
 template<typename Iterator>
-void ConverterJSON::findingDocumentsRequestFunction(multimap < size_t, vector <size_t>>& getDataRequest, vector <size_t>& docIDVector, vector <size_t>& dIDVector,
+void ConverterJSON::findingDocumentsRequestFunction(std::multimap < size_t, std::vector <size_t>>& getDataRequest, std::vector <size_t>& docIDVector, std::vector <size_t>& dIDVector,
 	                                                nlohmann::json requestConfig[MAX_RESPONS], nlohmann::json& requestNumberConfig, bool& ifDoc, int& countReqResponses,
 	                                                Iterator& iterator)
 {
@@ -86,12 +86,12 @@ void ConverterJSON::findingDocumentsRequestFunction(multimap < size_t, vector <s
 }
 
 template<typename Iterator>
-void ConverterJSON::searchRequestRelevanceFunction(multimap < size_t, vector <size_t>>& getDataRequest, vector< nlohmann::json>& resultVectorConfig, Iterator& iterator,
-	                                               multimap < string, multimap <size_t, size_t>>& dataWord, size_t& requestAbsoluteRelevance, size_t& maxRequestAbsoluteRelevance, 
-	                                               multimap <size_t, size_t >& searchRequestResult)
+void ConverterJSON::searchRequestRelevanceFunction(std::multimap < size_t, std::vector <size_t>>& getDataRequest, std::vector< nlohmann::json>& resultVectorConfig, Iterator& iterator,
+	                                               std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord, size_t& requestAbsoluteRelevance, size_t& maxRequestAbsoluteRelevance,
+	                                               std::multimap <size_t, size_t >& searchRequestResult)
 {
 	nlohmann::json requestConfig[MAX_RESPONS], requestNumberConfig, requestResultConfig;
-	vector <size_t> docIDVector, dIDVector;
+	std::vector <size_t> docIDVector, dIDVector;
 	bool ifDoc = false;
 	int countReqResponses = 0;
 	double relativeReqRelevance = 0;
@@ -113,9 +113,9 @@ void ConverterJSON::searchRequestRelevanceFunction(multimap < size_t, vector <si
 	countReqResponses = 0;
 }
 
-void ConverterJSON::queryProcessingFunction(vector<string>& requestWord, multimap<size_t, size_t>& searchResult, multimap<string, vector< Entry>>& countWordsMap,
+void ConverterJSON::queryProcessingFunction(std::vector<std::string>& requestWord, std::multimap<size_t, size_t>& searchResult, std::multimap<std::string, std::vector< Entry>>& countWordsMap,
                                         	nlohmann::json& docConfig, nlohmann::json dataConfig[MAX_RESPONS], size_t& absoluteRelevance, size_t& maxAbsoluteRelevance,
-	                                        size_t& maxAbsoluteRelevanceDoc, multimap < size_t, vector <size_t>>& getDataRequest, multimap < string, multimap <size_t, size_t>>& dataWord)
+	                                        size_t& maxAbsoluteRelevanceDoc, std::multimap < size_t, std::vector <size_t>>& getDataRequest, std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord)
 {
 	for (int i = 0; i < requestWord.size(); ++i)
 	{
@@ -132,7 +132,7 @@ void ConverterJSON::queryProcessingFunction(vector<string>& requestWord, multima
 }
 
 template<typename JsonIterator>
-void ConverterJSON::writingQueriesVectorFunction(vector<string>& reqtWord, JsonIterator& iterator)
+void ConverterJSON::writingQueriesVectorFunction(std::vector<std::string>& reqtWord, JsonIterator& iterator)
 {
 	for (auto& wordsRequest : iterator->second)
 	{
@@ -142,13 +142,13 @@ void ConverterJSON::writingQueriesVectorFunction(vector<string>& reqtWord, JsonI
 }
 
 template<typename Iterator>
-void ConverterJSON::requestProcessingFunction(Iterator& iterator, multimap<string, vector< Entry>>& countWordsMap, vector<string>& requestWord, vector<string>& reqtWord,
+void ConverterJSON::requestProcessingFunction(Iterator& iterator, std::multimap<std::string, std::vector< Entry>>& countWordsMap, std::vector<std::string>& requestWord, std::vector<std::string>& reqtWord,
 	                                          int& reqNumber, nlohmann::json dataConfig[MAX_RESPONS], nlohmann::json docConfig, nlohmann::json requestNumberConfig,
-	                                          nlohmann::json requestResultConfig, vector< nlohmann::json>& resultVectorConfig)
+	                                          nlohmann::json requestResultConfig, std::vector< nlohmann::json>& resultVectorConfig)
 {
-	multimap < size_t, vector <size_t>>  getDataRequest;
-	multimap < string, multimap <size_t, size_t>> dataWord;
-	multimap <size_t, size_t > searchRequestResult, searchResult;
+	std::multimap <size_t, std::vector <size_t>>  getDataRequest;
+	std::multimap <std::string, std::multimap <size_t, size_t>> dataWord;
+	std::multimap <size_t, size_t > searchRequestResult, searchResult;
 	size_t absoluteRelevance = 0, maxAbsoluteRelevanceDoc = 0, maxAbsoluteRelevance = 0, nlohmArrayCount = 0;
 	size_t  requestAbsoluteRelevance = 0, maxRequestAbsoluteRelevance = 0;
 	double relativeRelevance = 0;
@@ -164,12 +164,12 @@ void ConverterJSON::requestProcessingFunction(Iterator& iterator, multimap<strin
 	++reqNumber;
 }
 
-void ConverterJSON::searchAnswerFunction(multimap<string, vector< Entry>>& countWordsMap, map <size_t, vector< string>>& getRequest)
+void ConverterJSON::searchAnswerFunction(std::multimap<std::string, std::vector< Entry>>& countWordsMap, std::map <size_t, std::vector< std::string>>& getRequest)
 {
-		vector<string> requestWord, reqtWord;
+	std::vector<std::string> requestWord, reqtWord;
 		int reqNumber = 1;
 		nlohmann::json dataConfig[MAX_RESPONS], docConfig, requestNumberConfig, requestResultConfig;
-		vector< nlohmann::json> resultVectorConfig;
+		std::vector< nlohmann::json> resultVectorConfig;
 		for (auto iterator = getRequest.begin(); iterator != getRequest.end(); iterator++)
 		{
 			requestProcessingFunction(iterator, countWordsMap, requestWord, reqtWord, reqNumber, dataConfig, docConfig, requestNumberConfig, requestResultConfig, resultVectorConfig);
