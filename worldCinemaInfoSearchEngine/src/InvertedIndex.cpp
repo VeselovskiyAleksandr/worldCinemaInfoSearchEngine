@@ -6,14 +6,14 @@ void InvertedIndex::vectorTraversalFunction(std::vector<std::string>& sentence, 
 	{
 		for (int n = 0; n < sentence[ir].length(); ++n)
 		{
-			wordEntryConditionFunction(word, sentence, setWords, ir, n);
+			wordEntryConditionFunction(sentence, setWords, ir, n);
 		}
 	}
 
 }
 
 template<typename Iterator>
-void InvertedIndex::wordEntryConditionFunction(std::string& word, std::vector<std::string>& sentence, std::vector<std::string>& setWords, Iterator& ir, Iterator& n)
+void InvertedIndex::wordEntryConditionFunction(std::vector<std::string>& sentence, std::vector<std::string>& setWords, Iterator& ir, Iterator& n)
 {
 	if (sentence[ir][n] != '?' && sentence[ir][n] != '!' && sentence[ir][n] != '"' && sentence[ir][n] != '-' && sentence[ir][n] != '\'' && sentence[ir][n] != '/' &&
 		sentence[ir][n] != ')' && sentence[ir][n] != '(' && sentence[ir][n] != ' ' && sentence[ir][n] != ';' && sentence[ir][n] != ':' && sentence[ir][n] != ',' &&
@@ -23,19 +23,19 @@ void InvertedIndex::wordEntryConditionFunction(std::string& word, std::vector<st
 		{
 			sentence[ir][n] += 32;
 		}
-		word += sentence[ir][n];
+		entry.word += sentence[ir][n];
 	}
 	else
 	{
-		if (word.length() > configuration.minWordLength)
-			setWords.push_back(word);
+		if (entry.word.length() > configuration.minWordLength)
+			setWords.push_back(entry.word);
 
-		word = "";
+		entry.word = "";
 	}
 	if (ir == sentence[ir].length() - 1)
 	{
-		setWords.push_back(word);
-		word = "";
+		setWords.push_back(entry.word);
+		entry.word = "";
 	}
 }
 
@@ -45,8 +45,7 @@ void InvertedIndex::wordSplitFunction(std::vector<std::string>& sentence, std::v
 	vectorTraversalFunction(sentence, setWords, highlightedWord);
 }
 
-
-void InvertedIndex::vectorEntryFillFunction(std::vector<std::string> vectWord[DOCUMENT_NUMBER], int filmId, std::vector<Entry> getCountWords[DOCUMENT_NUMBER])
+void InvertedIndex::vectorEntryFillFunction(std::vector<std::string> vectWord[DOCUMENT_NUMBER], int filmId)
 {
 	size_t wordRepetitionCount = 0;
 	std::vector<std::string> checkRepetition;
@@ -102,7 +101,7 @@ void InvertedIndex::maxRelevanceFindingFunction(std::vector <size_t> dIDVector, 
 }
 
 template<typename Iterator>
-void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, std::vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count, Entry& entry)
+void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, Iterator& it, size_t& count)
 {
 	entry.docId = it.docId;
 	entry.word = it.word;
@@ -112,7 +111,7 @@ void InvertedIndex::fillEntryFunction(size_t& countPosition, int& i, std::vector
 }
 
 template<typename Iterator>
-void InvertedIndex::matchSearchInnerLoopFunction(int& i, std::vector<Entry> getCountWords[DOCUMENT_NUMBER], Iterator& it, size_t& count)
+void InvertedIndex::matchSearchInnerLoopFunction(int& i, Iterator& it, size_t& count)
 {
 	for (int j = i + 1; j != DOCUMENT_NUMBER; ++j)
 	{
@@ -123,7 +122,7 @@ void InvertedIndex::matchSearchInnerLoopFunction(int& i, std::vector<Entry> getC
 			{
 				count += qj.freqWordsCount;
 				Entry entry;
-				fillEntryFunction(countPos_2, i, getCountWords, it, count, entry);
+				fillEntryFunction(countPos_2, i, it, count);
 				break;
 			}
 			countPos_2++;
@@ -131,7 +130,7 @@ void InvertedIndex::matchSearchInnerLoopFunction(int& i, std::vector<Entry> getC
 	}
 }
 
-void InvertedIndex::matchSearchOuterLoopFunction(std::vector<Entry> getCountWords[DOCUMENT_NUMBER], std::vector <Entry>& vectEntry, std::multimap<std::string, std::vector< Entry>>& countWordsMap)
+void InvertedIndex::matchSearchOuterLoopFunction(std::vector <Entry>& vectEntry)
 {
 	for (int i = 0; i != DOCUMENT_NUMBER; ++i)
 	{
@@ -141,10 +140,10 @@ void InvertedIndex::matchSearchOuterLoopFunction(std::vector<Entry> getCountWord
 			size_t count = it.freqWordsCount;
 			if (it.checkAction == true)
 				break;
-			matchSearchInnerLoopFunction(i, getCountWords, it, count);
+			matchSearchInnerLoopFunction(i, it, count);
 			Entry entry;
 			entry.freqWordsCount = it.freqWordsCount;
-			fillEntryFunction(countPos_1, i, getCountWords, it, count, entry);
+			fillEntryFunction(countPos_1, i, it, count);
 			vectEntry.push_back(entry);
 			countWordsMap.insert({ it.word, vectEntry });
 			vectEntry.clear();

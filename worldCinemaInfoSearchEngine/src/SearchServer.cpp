@@ -36,8 +36,7 @@ void SearchServer::openFilesFunction(Configuration& configuration, std::string m
 	}
 }
 
-void SearchServer::getWordDataFunction(std::multimap<std::string, std::vector< Entry>>& countWordsMap, Configuration& configuration, std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER],
-	                                   std::vector<Entry> getCountWords[DOCUMENT_NUMBER])
+void SearchServer::getWordDataFunction(Configuration& configuration, std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER])
 {
 	std::vector<std::string> vectorWord[DOCUMENT_NUMBER];
 	std::string strWord[DOCUMENT_NUMBER], moviePath[DOCUMENT_NUMBER];
@@ -56,7 +55,7 @@ void SearchServer::getWordDataFunction(std::multimap<std::string, std::vector< E
 		}
 		invertedIndex.wordSplitFunction(wordsFromFilesVector[i], vectorWord[i]);
 		wordsFromFilesVector[i].clear();
-		invertedIndex.vectorEntryFillFunction(vectorWord, i, getCountWords);
+		invertedIndex.vectorEntryFillFunction(vectorWord, i);
 		fileComplete = false;
 		cond.notify_all();
 		for (auto& thread : threads)
@@ -64,9 +63,9 @@ void SearchServer::getWordDataFunction(std::multimap<std::string, std::vector< E
 			thread.join();
 		}
 		std::vector <Entry> vectEntry;
-		invertedIndex.matchSearchOuterLoopFunction(getCountWords, vectEntry, countWordsMap);
+		invertedIndex.matchSearchOuterLoopFunction(vectEntry);
 		vectorWord[i].clear();
-		getCountWords[i].clear();
+		invertedIndex.getCountWords[i].clear();
 	}
 }
 
