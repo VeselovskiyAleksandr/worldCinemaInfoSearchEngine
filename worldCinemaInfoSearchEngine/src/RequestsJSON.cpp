@@ -35,11 +35,11 @@ void RequestsJSON::requerInputFunction(std::map<size_t, std::vector<std::string>
 		std::cout << "               Search query field" << "\n" << "\n";
 		std::vector<std::string> vectorRequest;
 		std::string requerie = "";
-		size_t requestNumber = 1;
+		size_t requestNumber = 0;
 		std::getline(std::cin, requerie);
 		if (requerie.length() > configuration.maxStrRequestLength)
-			requerie.erase(requerie.length() - configuration.maxStrRequestLength);
-		requestNumber = getRequests.size() + 1;
+		 requerie.erase(requerie.length() - configuration.maxStrRequestLength);
+		requestNumber = getRequests.size();
 		vectorRequest.push_back(requerie);
 		requerie = "";
 		getRequests.emplace(requestNumber, vectorRequest);

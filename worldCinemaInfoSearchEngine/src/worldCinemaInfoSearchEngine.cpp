@@ -37,7 +37,7 @@ int main()
 	engineStart.openFile("requests.json");
 	engineStart.openFile("answers.json");
 	searchServer.getRequestsFunction(requestsJSON.getRequests);
-    //requestsJSON.requerInputFunction(requestsJSON.getRequests);
+    requestsJSON.requerInputFunction(requestsJSON.getRequests);
 	requestsJSON.writeMapToFileFunction(requestsJSON.getRequests);
 	auto startTime = std::chrono::high_resolution_clock::now();
 	searchServer.getWordDataFunction(invertedIndex.countWordsMap, configuration, invertedIndex.wordsFromFilesVector, invertedIndex.getCountWords);
