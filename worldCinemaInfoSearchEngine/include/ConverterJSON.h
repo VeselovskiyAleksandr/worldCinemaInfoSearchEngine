@@ -46,6 +46,7 @@ void searchRequestRelevanceFunction(std::multimap < size_t, std::vector <size_t>
 void queryProcessingFunction(std::vector<std::string>& requestWord, std::multimap<size_t, size_t>& searchResult, std::multimap<std::string, std::vector< Entry>>& countWordsMap,
 	                         nlohmann::json& docConfig, nlohmann::json dataConfig[MAX_RESPONS], size_t& absoluteRelevance, size_t& maxAbsoluteRelevance,
 	                         size_t& maxAbsoluteRelevanceDoc, std::multimap < size_t, std::vector <size_t>>& getDataRequest, std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord);
+
 //функция заполнения вектора строк словами запросов
 template<typename JsonIterator>
 void writingQueriesVectorFunction(std::vector<std::string>& reqtWord, JsonIterator& iterator);

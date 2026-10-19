@@ -40,7 +40,7 @@ int main()
     //requestsJSON.requerInputFunction(requestsJSON.getRequests);
 	requestsJSON.writeMapToFileFunction(requestsJSON.getRequests);
 	auto startTime = std::chrono::high_resolution_clock::now();
-	searchServer.getWordDataFunction(configuration, invertedIndex.wordsFromFilesVector);
+	searchServer.getWordDataFunction(invertedIndex.countWordsMap, configuration, invertedIndex.wordsFromFilesVector, invertedIndex.getCountWords);
 	converterJSON.searchAnswerFunction(invertedIndex.countWordsMap, requestsJSON.getRequests);
 	searchServer.getAnswerFunction();
 	auto endTime = std::chrono::high_resolution_clock::now();

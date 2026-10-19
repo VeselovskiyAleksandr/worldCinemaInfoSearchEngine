@@ -79,7 +79,7 @@ TEST(ConverterJSONTest, someFunctionsTest)
 	std::vector<Entry> getWordCountTest[DOCUMENT_NUMBER];
 	std::multimap<std::string, std::vector< Entry>> countWordsMapTest;
 	std::vector<Entry> getCountWordsTest[DOCUMENT_NUMBER];
-	invertedIndex.vectorEntryFillFunction(vectorWordTest, 0);
+	invertedIndex.vectorEntryFillFunction(vectorWordTest, 0, getCountWordsTest);
 	for (int i = 0; i < getWordCountTest[0].size(); ++i)
 	{
 		for (auto j : getWordCountTest[0])

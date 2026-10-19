@@ -23,7 +23,8 @@ public: SearchServer() = default;
 	  void openFilesFunction(Configuration& configuration, std::string moviePath[DOCUMENT_NUMBER], std::ifstream file[DOCUMENT_NUMBER]);
 
 	  //функция получения данных о словах
-	  void getWordDataFunction(Configuration& configuration, std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER]);
+	  void getWordDataFunction(std::multimap<std::string, std::vector< Entry>>& countWordsMap, Configuration& configuration, std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER],
+		  std::vector<Entry> getCountWords[DOCUMENT_NUMBER]);
 
 	  //функция чтения из файлов
 	  void readFromFilesFunction(std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER], std::string strWord[DOCUMENT_NUMBER], std::ifstream file[DOCUMENT_NUMBER], std::queue<std::string> lines);
