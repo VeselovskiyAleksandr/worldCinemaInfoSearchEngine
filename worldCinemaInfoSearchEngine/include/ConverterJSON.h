@@ -26,7 +26,7 @@ void contentLeastFrequentWordFunction(Iterator& iter, std::multimap < size_t, st
 
 //функция расчёта релевантности и записи данных в JSON
 void findingRequestDataFunction(std::multimap <size_t, size_t >& searchRequestResult, double& relativeReqRelevance, size_t& maxRequestAbsoluteRelevance,
-                            	nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, bool& ifDoc, nlohmann::json requestNumberConfig);
+	nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, bool& ifDoc);
 
 //функция очистки вектора JSON
 void cleaningJSONArrayFunction(nlohmann::json requestConfig[MAX_RESPONS]);

@@ -1,9 +1,8 @@
 #include "AnswersJSON.h"
 
 void AnswersJSON::searchIdenticalWordsFunction(std::multimap<std::string, std::vector< Entry>>& countWordsMap, std::multimap<size_t, size_t>& searchResult,
-	                                          std::vector<std::string>& requestWord, size_t& absoluteRelevance, size_t& maxAbsoluteRelevance,
-	                                          size_t& maxAbsoluteRelevanceDoc, int& i, std::multimap < size_t, std::vector <size_t>>& getDataRequest,
-	                                          std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord)
+	                                           std::vector<std::string>& requestWord, int& i, std::multimap < size_t, std::vector <size_t>>& getDataRequest,
+	                                           std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord)
 {
 	size_t wordRepetition = 0;
 	std::vector <size_t> docWord;

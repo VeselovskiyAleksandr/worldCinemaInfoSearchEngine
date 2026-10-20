@@ -48,7 +48,7 @@ void ConverterJSON::contentLeastFrequentWordFunction(Iterator& iter, std::multim
 }
 
 void ConverterJSON::findingRequestDataFunction(std::multimap <size_t, size_t >& searchRequestResult, double& relativeReqRelevance, size_t& maxRequestAbsoluteRelevance,
-	                                           nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, bool& ifDoc, nlohmann::json requestNumberConfig)
+	nlohmann::json requestConfig[MAX_RESPONS], int& countReqResponses, bool& ifDoc)
 {
 	nlohmann::json docConfig;
 	for (auto iter = searchRequestResult.crbegin(); iter != searchRequestResult.crend(); ++iter)
@@ -102,7 +102,7 @@ void ConverterJSON::searchRequestRelevanceFunction(std::multimap < size_t, std::
 	dIDVector.clear();
 	docIDVector.clear();
 	requestNumberConfig = { {{{ "Request",{ iterator->first+1, iterator->second }}}} };
-	findingRequestDataFunction(searchRequestResult, relativeReqRelevance, maxRequestAbsoluteRelevance, requestConfig, countReqResponses, ifDoc, requestNumberConfig);
+	findingRequestDataFunction(searchRequestResult, relativeReqRelevance, maxRequestAbsoluteRelevance, requestConfig, countReqResponses, ifDoc);
 	requestResultConfig = { { requestNumberConfig},{ requestConfig} };
 	resultVectorConfig.push_back(requestResultConfig);
 	cleaningJSONArrayFunction(requestConfig);
@@ -120,7 +120,7 @@ void ConverterJSON::queryProcessingFunction(std::vector<std::string>& requestWor
 	for (int i = 0; i < requestWord.size(); ++i)
 	{
 		int countResponses = 0;
-		answersJSON.searchIdenticalWordsFunction(countWordsMap, searchResult, requestWord, absoluteRelevance, maxAbsoluteRelevance, maxAbsoluteRelevanceDoc, i, getDataRequest, dataWord);
+		answersJSON.searchIdenticalWordsFunction(countWordsMap, searchResult, requestWord, i, getDataRequest, dataWord);
 		docConfig.clear();
 		absoluteRelevance = 0;
 		searchResult.clear();
