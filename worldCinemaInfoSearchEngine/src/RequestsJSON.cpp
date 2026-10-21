@@ -31,15 +31,16 @@ void RequestsJSON::requerInputFunction(std::map<size_t, std::vector<std::string>
 {
 	if (getRequests.size() < configuration.maxRequest)
 	{
+		size_t requestNumber = 0;
+		requestNumber = getRequests.size();
 		std::cout << "\n" << "                                      Information about domestic and foreign films" << "\n" << "\n";
-		std::cout << "               Search query field" << "\n" << "\n";
+		std::cout << "               Search query field" << "\n";
+		std::cout << "              Your request number "<< requestNumber+1 << "\n" << "\n";
 		std::vector<std::string> vectorRequest;
 		std::string requerie = "";
-		size_t requestNumber = 0;
 		std::getline(std::cin, requerie);
 		if (requerie.length() > configuration.maxStrRequestLength)
 		 requerie.erase(requerie.length() - configuration.maxStrRequestLength);
-		requestNumber = getRequests.size();
 		vectorRequest.push_back(requerie);
 		requerie = "";
 		getRequests.emplace(requestNumber, vectorRequest);

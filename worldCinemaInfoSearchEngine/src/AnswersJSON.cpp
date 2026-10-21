@@ -3,19 +3,27 @@
 void AnswersJSON::searchIdenticalWordsFunction(std::multimap<std::string, std::vector< Entry>>& countWordsMap, std::multimap<size_t, size_t>& searchResult,
 	                                           std::vector<std::string>& requestWord, int& i, std::multimap < size_t, std::vector <size_t>>& getDataRequest,
 	                                           std::multimap < std::string, std::multimap <size_t, size_t>>& dataWord)
+
 {
 	size_t wordRepetition = 0;
 	std::vector <size_t> docWord;
 	auto itr = countWordsMap.equal_range(requestWord[i]);
-	for (auto it = itr.first; it != itr.second; ++it)
+	if (countWordsMap.count(requestWord[i]) == 0)
 	{
-		for (auto m : it->second)
-		{
-			searchResult.insert({ m.freqWordsCount, m.docId });
-			size_t wordRepetition = m.wordFrequency;
-			docWord.push_back(m.docId);
-		}
+		searchResult.insert({ 0, 0 });
+		size_t wordRepetition = 0;
+		docWord.push_back(0);
+		i = requestWord.size()-1;
 	}
+		for (auto it = itr.first; it != itr.second; ++it)
+		{
+			for (auto m : it->second)
+			{
+				searchResult.insert({ m.freqWordsCount, m.docId });
+				size_t wordRepetition = m.wordFrequency;
+				docWord.push_back(m.docId);
+			}
+		}
 	getDataRequest.insert({ wordRepetition, docWord });
 	dataWord.insert({ requestWord[i],searchResult });
 	wordRepetition = 0;

@@ -12,8 +12,8 @@ public: ConverterJSON() = default;
 
 	//функция записи в JSON нулевого результата
 	template<typename Iterator>
-	void nullResultRecordingFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2, nlohmann::json& requestNumberConfig,
-		                             nlohmann::json requestConfig[MAX_RESPONS], Iterator& iterator, int& countReqResponses, nlohmann::json& docConfig);
+	void nullResultRecordingFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2, nlohmann::json requestConfig[MAX_RESPONS],
+		                             Iterator& iterator, int& countReqResponses, nlohmann::json& docConfig);
 
 	//функция нахождения общих документов при переходе от слов с меньшей встречаемостью к словам с большей встречаемостью.
 template<typename Iterat, typename Iter>

@@ -160,6 +160,7 @@ void InvertedIndex::transferElementsFunction(std::vector <size_t>& docIDVector, 
 	{
 		for (int i = 0; i < docIDVector.size(); ++i)
 		{
+
 			dIDVector.push_back(docIDVector[i]);
 		}
 	}

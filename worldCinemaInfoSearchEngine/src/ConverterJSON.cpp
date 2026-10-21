@@ -1,7 +1,7 @@
 #include "ConverterJSON.h"
 
 template<typename Iterator>
-void ConverterJSON::nullResultRecordingFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2, nlohmann::json& requestNumberConfig,
+void ConverterJSON::nullResultRecordingFunction(std::vector <size_t>& docIDVector_1, std::vector <size_t>& docIDVector_2,
 	                                            nlohmann::json requestConfig[MAX_RESPONS], Iterator& iterator, int& countReqResponses, nlohmann::json& docConfig)
 {
 	requestConfig[countReqResponses] = { {docConfig, { "Absolute relevance", 0 }, {"Relative relevance", 0.}} };
@@ -27,7 +27,7 @@ void ConverterJSON::vectorTraversalFunction(std::vector <size_t>& docIDVector_1,
 		{
 			nlohmann::json docConfig;
 			docConfig = { { "result",  ifDoc } };
-			nullResultRecordingFunction(docIDVector_1, docIDVector_2, requestNumberConfig, requestConfig, iterator, countReqResponses, docConfig);
+			nullResultRecordingFunction(docIDVector_1, docIDVector_2, requestConfig, iterator, countReqResponses, docConfig);
 			break;
 		}
 		ifDoc = false;
@@ -53,11 +53,20 @@ void ConverterJSON::findingRequestDataFunction(std::multimap <size_t, size_t >& 
 	nlohmann::json docConfig;
 	for (auto iter = searchRequestResult.crbegin(); iter != searchRequestResult.crend(); ++iter)
 	{
-		docConfig = { {"docID ", iter->second }, { "result",  ifDoc } };
-		relativeReqRelevance = (double)(iter->first) / (double)maxRequestAbsoluteRelevance;
-		relativeReqRelevance = round(relativeReqRelevance * 100) / 100;
-		requestConfig[countReqResponses] = { { docConfig, {{ "Absolute relevance", iter->first }, {"Relative relevance", relativeReqRelevance}} } };
-		countReqResponses++;
+		if (iter->first == 0)
+		{
+			ifDoc = false;
+			docConfig = { { "result",  ifDoc } };
+			requestConfig[countReqResponses] = { {docConfig, { "Absolute relevance", 0 }, {"Relative relevance", 0.}} };
+		}
+		else
+		{
+			docConfig = { {"docID ", iter->second }, { "result",  ifDoc } };
+			relativeReqRelevance = (double)(iter->first) / (double)maxRequestAbsoluteRelevance;
+			relativeReqRelevance = round(relativeReqRelevance * 100) / 100;
+			requestConfig[countReqResponses] = { { docConfig, {{ "Absolute relevance", iter->first }, {"Relative relevance", relativeReqRelevance}} } };
+			countReqResponses++;
+		}
 		if (countReqResponses == MAX_RESPONS)
 			break;
 	}
@@ -101,7 +110,7 @@ void ConverterJSON::searchRequestRelevanceFunction(std::multimap < size_t, std::
 	invertedIndex.maxRelevanceFindingFunction(dIDVector, dataWord, requestAbsoluteRelevance, maxRequestAbsoluteRelevance, searchRequestResult);
 	dIDVector.clear();
 	docIDVector.clear();
-	requestNumberConfig = { {{{ "Request",{ iterator->first+1, iterator->second }}}} };
+	requestNumberConfig = { {{{ "Request",{ (iterator->first)+1, iterator->second }}}} };
 	findingRequestDataFunction(searchRequestResult, relativeReqRelevance, maxRequestAbsoluteRelevance, requestConfig, countReqResponses, ifDoc);
 	requestResultConfig = { { requestNumberConfig},{ requestConfig} };
 	resultVectorConfig.push_back(requestResultConfig);
