@@ -9,4 +9,5 @@ project ("worldCinemaInfoSearchEngine")
 # Включите подпроекты.
 add_subdirectory ("worldCinemaInfoSearchEngine")
 add_subdirectory(Test)
+add_subdirectory(Examples)
 add_subdirectory(nlohmann.json)

@@ -9,8 +9,11 @@ class InvertedIndex
 	  Configuration configuration;
 	  Entry entry;
 	  RequestsJSON requestsJSON;
+         //wordsFromFilesVector[DOCUMENT_NUMBER] содержит слова из документа и его номер
 	  std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER];
+        //¬ектор содержит структуру с данными дл€ данного слова.
 	  std::vector<Entry> getCountWords[DOCUMENT_NUMBER];
+	  //карта содержит в качестве ключа слово из документа, в качестве значени€ - структуру с данными дл€ данного слова.
 	  std::multimap<std::string, std::vector< Entry>> countWordsMap;
 
 	  	  //функци€ обхода вектора

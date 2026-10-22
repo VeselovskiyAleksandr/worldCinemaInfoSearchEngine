@@ -29,9 +29,11 @@ public: SearchServer() = default;
 	  //функция чтения из файлов
 	  void readFromFilesFunction(std::vector<std::string> wordsFromFilesVector[DOCUMENT_NUMBER], std::string strWord[DOCUMENT_NUMBER], std::ifstream file[DOCUMENT_NUMBER], std::queue<std::string> lines);
 
+	  //Функция проверки строки требуемым значениям 
 	  template<typename JsonIterator>
 	  void conditionCheckingFunction(std::map<size_t, std::vector<std::string>>& getRequests, std::vector<std::string>& vecRequest, size_t& nReq, const JsonIterator& element);
 
+	  //Функция обхода json файла.
 	  template<typename JsonType>
 	  void JsonTraversalFunction_1(std::map<size_t, std::vector<std::string>>& getRequests, std::vector<std::string>& vecRequest, size_t& nReq, const JsonType& data);
 

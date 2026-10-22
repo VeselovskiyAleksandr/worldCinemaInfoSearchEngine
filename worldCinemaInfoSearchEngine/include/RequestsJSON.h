@@ -6,6 +6,7 @@ class RequestsJSON
 public: RequestsJSON() = default;
 public:
      Configuration configuration;
+	 //Карта записи запросов, где ключ - номер запроса, значение - запрос.
 	 std::map <size_t, std::vector< std::string>> getRequests;
 
 	 //функция отбора слов превышающих минимальную длину
